@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}
+  Home
+{% endblock title %}
+{% block body %}
+
+<div class="container my-3">
+  <h2>Add Todo</h2>
+  <form action="/" method="POST">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" class="form-control" name="description" id="description">
+      </div>
+      <button type="submit" class="btn btn-outline-secondary">Submit</button>
+    </form> 
+</div>
+<div class="container my-3">
+  <h2>Your Todo's</h2>
+  <table class="table">
+      
+      <tbody>
+          {% if todoall | length == 0 %}
+            <div class="alert alert-danger" role="alert">
+              No Records !
+            </div>
+          {% else %}
+          <thead>
+            <tr>
+              <th scope="col">sno</th>
+              <th scope="col">Title</th>
+              <th scope="col">Description</th>
+              <th scope="col">Date & Time</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+         
+         
+          {% for todo in todoall %}
+          <tr>
+              <th scope="row">{{loop.index}}</th>
+              <td>{{todo.title}}</td>
+              <td>{{todo.description}}</td>
+              <td>{{todo.date_created}}</td>
+              <td>
+                  <a href="/update/{{todo.sno}}" type="button" class="btn btn-outline-secondary btn-sm mx-1">Update</button>
+                  <a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-warning btn-sm mx-1">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        {% endfor %}
+        {% endif %}
+
+</div>
+
+{% endblock body %}
