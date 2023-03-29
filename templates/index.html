@@ -38,7 +38,7 @@
             </tr>
           </thead>
          
-         
+         <tbody>
           {% for todo in todoall %}
           <tr>
               <th scope="row">{{loop.index}}</th>
@@ -51,8 +51,9 @@
               </td>
             </tr>
           </tbody>
-        </table>
+     
         {% endfor %}
+      </table>
         {% endif %}
 
 </div>
